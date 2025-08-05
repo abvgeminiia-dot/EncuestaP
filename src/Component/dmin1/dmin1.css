@@ -1,0 +1,197 @@
+/* src/components/Admin.css */
+
+/* --- ESTILOS BASE (ESCRITORIO) --- */
+.admin-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 2rem;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.admin-container h1 {
+  color: #111827;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.admin-container p {
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.admin-actions button {
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-actions button:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.admin-actions .excel-btn {
+  background-color: #107c41;
+  color: white;
+}
+.admin-actions .excel-btn:hover {
+  background-color: #0f6d3a;
+}
+
+.table-wrapper {
+  overflow-x: auto; /* Necesario para escritorio si la tabla es muy ancha */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap; /* Evita que el texto se parta en varias líneas en escritorio */
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+  background-color: #f3f4f6;
+  color: #374151;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actions-cell button {
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.edit-btn { background-color: #eff6ff; color: #1d4ed8; }
+.delete-btn { background-color: #fee2e2; color: #b91c1c; }
+.save-btn { background-color: #dcfce7; color: #166534; }
+.cancel-btn { background-color: #f3f4f6; color: #4b5563; }
+
+.edit-btn:hover { background-color: #dbeafe; }
+.delete-btn:hover { background-color: #fecaca; }
+.save-btn:hover { background-color: #bbf7d0; }
+.cancel-btn:hover { background-color: #e5e7eb; }
+
+td input {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  width: 100%;
+  min-width: 150px;
+}
+
+td input:disabled {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+
+/* ======================================================== */
+/* --- ESTILOS RESPONSIVOS PARA PANTALLAS DE TELÉFONO --- */
+/* ======================================================== */
+
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 1rem;
+  }
+
+  .admin-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .admin-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-actions button {
+    width: 100%;
+  }
+
+  /* --- COMIENZA LA TRANSFORMACIÓN DE LA TABLA A TARJETAS --- */
+
+  /* Ocultamos los encabezados originales de la tabla */
+  table thead {
+    display: none;
+  }
+
+  /* Hacemos que la tabla y sus elementos se comporten como bloques */
+  table, tbody, tr, td {
+    display: block;
+    width: 100%;
+  }
+  
+  /* Convertimos cada fila (tr) en una tarjeta */
+  tr {
+    margin-bottom: 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+
+  /* Estilo de cada celda (td) dentro de la tarjeta */
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f3f4f6;
+    text-align: right;
+    font-size: 0.9rem;
+    white-space: normal; /* Permitimos que el texto largo se ajuste */
+  }
+
+  td:last-child {
+    border-bottom: none;
+  }
+
+  /* Usamos el pseudo-elemento ::before para añadir la etiqueta */
+  td::before {
+    content: attr(data-label); /* Tomamos el texto del atributo data-label */
+    font-weight: 600;
+    color: #374151;
+    text-align: left;
+    margin-right: 1rem;
+  }
+
+  /* Estilos especiales para la celda de acciones */
+  .actions-cell {
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color: #f9fafb;
+    padding: 0.75rem;
+  }
+  
+  .actions-cell::before {
+    display: none; /* No necesitamos la etiqueta "Acciones" */
+  }
+}

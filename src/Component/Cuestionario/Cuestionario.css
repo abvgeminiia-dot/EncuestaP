@@ -1,0 +1,272 @@
+/* Cuestionario.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.main-container {
+  width: 100%;
+  max-width: 800px;
+}
+
+.card-inicio {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.icon-container {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.card-inicio h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a237e;
+  margin-bottom: 15px;
+}
+
+.card-inicio p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+}
+
+.btn-principal {
+  background: linear-gradient(45deg, #3f51b5, #1a237e);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 15px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(63, 81, 181, 0.4);
+}
+
+.btn-principal:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(63, 81, 181, 0.5);
+}
+
+.titulo-cuestionario {
+  text-align: center;
+  color: #1a237e;
+  margin-bottom: 30px;
+}
+
+.card-pregunta {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.texto-pregunta {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 10px 0; /* Espacio reducido */
+}
+
+/* Estilo para la dimensión dentro de la tarjeta de pregunta */
+.texto-dimension {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #666;
+  margin: 0 0 20px 0;
+}
+
+.opciones-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.opcion-label {
+  flex-grow: 1;
+  text-align: center;
+  padding: 12px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px; /* Ancho mínimo para las opciones */
+}
+
+.opcion-label:hover {
+  border-color: #3f51b5;
+  background-color: #e8eaf6;
+}
+
+.opcion-label.seleccionada {
+  border-color: #1a237e;
+  background-color: #3f51b5;
+  color: white;
+  font-weight: 600;
+}
+
+.opcion-input {
+  display: none;
+}
+
+.btn-finalizar {
+  display: block;
+  margin: 40px auto 20px auto;
+  width: 50%;
+  min-width: 250px;
+}
+
+/* --- ESTILOS PARA RESULTADOS Y PANTALLA DE ENVÍO --- */
+
+.card-resultados-wrapper {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.card-resultados-wrapper h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a237e;
+  margin-bottom: 15px;
+}
+
+.card-resultados-wrapper p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+}
+
+/* --- ESTILOS PARA EL FORMULARIO DE DATOS ADICIONALES --- */
+
+.form-datos-usuario {
+  width: 100%;
+  max-width: 500px;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  text-align: left;
+}
+
+.form-grupo {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-grupo label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.form-grupo input,
+.form-grupo select {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-grupo input::placeholder {
+  color: #aaa;
+}
+
+.form-grupo input:focus,
+.form-grupo select:focus {
+  outline: none;
+  border-color: #3f51b5;
+  box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.2);
+}
+
+.error-mensaje {
+  color: #c62828;
+  font-weight: 600;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+/* ======================================================= */
+/* --- ESTILOS RESPONSIVOS PARA PANTALLAS DE TELÉFONO --- */
+/* ======================================================= */
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px; /* Menos padding en el cuerpo para pantallas pequeñas */
+  }
+
+  .card-inicio,
+  .card-pregunta,
+  .card-resultados-wrapper {
+    padding: 20px; /* Reducir el padding interno de las tarjetas */
+  }
+
+  .card-inicio h1,
+  .card-resultados-wrapper h1 {
+    font-size: 1.5rem; /* Título más pequeño y manejable */
+  }
+
+  .card-inicio p,
+  .card-resultados-wrapper p {
+    font-size: 1rem; /* Texto de párrafo ligeramente más pequeño */
+  }
+
+  .form-datos-usuario {
+    /* Cambia el grid a una sola columna */
+    grid-template-columns: 1fr;
+    gap: 15px; /* Reduce el espacio entre campos */
+  }
+
+  .texto-pregunta {
+    font-size: 1.1rem; /* Ajusta el tamaño del texto de la pregunta */
+  }
+
+  .opciones-container {
+    flex-direction: column; /* Apila las opciones verticalmente */
+  }
+
+  .opcion-label {
+    min-width: 100%; /* Asegura que cada opción ocupe el ancho completo */
+    box-sizing: border-box;
+  }
+
+  .btn-finalizar {
+    width: 80%; /* El botón de finalizar ocupa más ancho para ser fácil de presionar */
+  }
+}
