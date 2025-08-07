@@ -12,7 +12,7 @@ const CuestionarioCompleto = () => {
 
   // Define aquí los IDs de las preguntas "claves".
   const preguntasNegativasIds = new Set(['ii2']);
-  
+
   // --- Estados del componente ---
   const [vista, setVista] = useState('inicio');
   const [respuestas, setRespuestas] = useState({});
@@ -57,46 +57,37 @@ const CuestionarioCompleto = () => {
     setVista('resultados');
     setEstadoEnvio('enviando');
 
-    // --- Lógica de Cálculo y Preparación de Datos ---
-    
-    // Mapeo de respuestas a puntajes
+    // --- Lógica de Cálculo ---
+
     const puntajes = { 'Siempre': 4, 'A menudo': 3, 'Raramente': 2, 'Nunca': 1 };
-    
     const resultadosPorDimension = {};
     const idsEnContraDetectados = [];
-    
-    // ✨ Objeto para guardar las puntuaciones individuales con el formato PreguntaX ✨
-    const respuestasNumericas = {};
 
-    preguntas.forEach((pregunta, index) => {
-      const respuestaUsuario = respuestas[pregunta.id];
-      const puntajeRespuesta = puntajes[respuestaUsuario];
-
-      // 1. Guardar la puntuación individual en el formato correcto
-      const nombreColumna = `Pregunta${index + 1}`;
-      respuestasNumericas[nombreColumna] = puntajeRespuesta;
-
-      // 2. Cálculo de puntajes por dimensión (sin cambios)
+    preguntas.forEach(pregunta => {
+      // Cálculo de puntajes por dimensión
       if (!resultadosPorDimension[pregunta.dimension]) {
         resultadosPorDimension[pregunta.dimension] = { puntajeTotal: 0, cantidad: 0 };
       }
-      resultadosPorDimension[pregunta.dimension].puntajeTotal += puntajeRespuesta;
+      resultadosPorDimension[pregunta.dimension].puntajeTotal += puntajes[respuestas[pregunta.id]];
       resultadosPorDimension[pregunta.dimension].cantidad += 1;
 
-      // 3. Verificación de preguntas en contra (sin cambios)
+      // Verificación de preguntas en contra
+      const respuestaUsuario = respuestas[pregunta.id];
+
+      // --> MODIFICADO: La condición ahora es que la respuesta NO sea 'Siempre'.
       if (preguntasNegativasIds.has(pregunta.id) && respuestaUsuario !== 'Siempre') {
         idsEnContraDetectados.push(pregunta.id);
       }
     });
 
-    // --- Preparación del Objeto Final para Supabase ---
+
+    // --- Preparación del Objeto para Supabase ---
     
     let puntajeGeneralTotal = 0;
     let cantidadDimensiones = 0;
 
     const objetoParaSupabase = {
       ...datosUsuario,
-      ...respuestasNumericas, // <-- ✨ Usamos el nuevo objeto con las puntuaciones numéricas
       Preguntas_Claves_En_Contra: idsEnContraDetectados.join(', '),
     };
 
